@@ -1,0 +1,44 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36310.24
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApiMetalamaDbContextSafeExecuteAttribute", "WebApiMetalamaDbContextSafeExecuteAttribute.csproj", "{BB266828-4FD4-5D8A-2890-5FEFCFDB2D41}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestProductService", "Tests\TestProductService\TestProductService.csproj", "{479A1201-404F-4BED-A86E-0CE789AA09F4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductService.Core", "ProductService.Core\ProductService.Core\ProductService.Core.csproj", "{127637BB-0489-4F14-897A-73F4E679A61E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		LamaDebug|Any CPU = LamaDebug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BB266828-4FD4-5D8A-2890-5FEFCFDB2D41}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB266828-4FD4-5D8A-2890-5FEFCFDB2D41}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB266828-4FD4-5D8A-2890-5FEFCFDB2D41}.LamaDebug|Any CPU.ActiveCfg = LamaDebug|Any CPU
+		{BB266828-4FD4-5D8A-2890-5FEFCFDB2D41}.LamaDebug|Any CPU.Build.0 = LamaDebug|Any CPU
+		{BB266828-4FD4-5D8A-2890-5FEFCFDB2D41}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB266828-4FD4-5D8A-2890-5FEFCFDB2D41}.Release|Any CPU.Build.0 = Release|Any CPU
+		{479A1201-404F-4BED-A86E-0CE789AA09F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{479A1201-404F-4BED-A86E-0CE789AA09F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{479A1201-404F-4BED-A86E-0CE789AA09F4}.LamaDebug|Any CPU.ActiveCfg = Release|Any CPU
+		{479A1201-404F-4BED-A86E-0CE789AA09F4}.LamaDebug|Any CPU.Build.0 = Release|Any CPU
+		{479A1201-404F-4BED-A86E-0CE789AA09F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{479A1201-404F-4BED-A86E-0CE789AA09F4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{127637BB-0489-4F14-897A-73F4E679A61E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{127637BB-0489-4F14-897A-73F4E679A61E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{127637BB-0489-4F14-897A-73F4E679A61E}.LamaDebug|Any CPU.ActiveCfg = Release|Any CPU
+		{127637BB-0489-4F14-897A-73F4E679A61E}.LamaDebug|Any CPU.Build.0 = Release|Any CPU
+		{127637BB-0489-4F14-897A-73F4E679A61E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{127637BB-0489-4F14-897A-73F4E679A61E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {885AD2F7-1178-4ECC-AF93-EAD96FCDFE06}
+	EndGlobalSection
+EndGlobal
