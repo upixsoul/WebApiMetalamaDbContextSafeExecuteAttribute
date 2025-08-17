@@ -47,7 +47,6 @@ namespace TestProductService
 
             Assert.That(result, Is.Not.Null);
             Assert.That(result.Count, Is.EqualTo(2));
-            //Assert.IsTrue(result.All(p => !string.IsNullOrEmpty(p.Name)));
             Assert.That(result.All(p => !string.IsNullOrEmpty(p.Name)));
         }
         
@@ -109,7 +108,7 @@ namespace TestProductService
 
             var result = service.GetAvailableProducts();
 
-            Assert.That(result, Is.Null);// El aspecto debería devolver default
+            Assert.That(result, Is.Null);
         }
 
     }
