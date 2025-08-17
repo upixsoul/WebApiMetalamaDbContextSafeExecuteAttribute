@@ -12,7 +12,7 @@ namespace WebApiMetalamaDbContextSafeExecuteAttribute
             var builder = WebApplication.CreateBuilder(args);
 
             builder.Services.AddDbContextFactory<AppDbContext>(options => options.
-                UseSqlServer("Data Source=ZEPHYRUS-G14;Initial Catalog=dagg;Persist Security Info=True;User ID=sa;Password=6vsPKz6PrX11qM;Trust Server Certificate=True"));
+                UseSqlServer(""));
 
             builder.Services.AddScoped<IProductService, ProductService.Core.ProductService>();
             builder.Services.AddControllers();
