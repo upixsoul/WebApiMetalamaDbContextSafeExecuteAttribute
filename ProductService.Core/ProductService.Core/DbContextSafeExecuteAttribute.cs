@@ -5,9 +5,9 @@ namespace ProductService.Core
 {
     [CompileTime]
     public class DbContextSafeExecuteAttribute<TContext> : OverrideMethodAspect
-#pragma warning disable LAMA0236 
+    #pragma warning disable LAMA0236 
         where TContext : DbContext 
-#pragma warning restore LAMA0236
+    #pragma warning restore LAMA0236
     {
         public override async Task<dynamic?> OverrideMethod() { 
             Console.WriteLine("Metalama: Aspect triggered"); 
@@ -21,7 +21,7 @@ namespace ProductService.Core
 
             try
             {
-                return await meta.ProceedAsync(); // Aquí ocurre la excepción
+                return await meta.ProceedAsync(); // Here is your original method execution
             }
             catch (Exception ex)
             {
