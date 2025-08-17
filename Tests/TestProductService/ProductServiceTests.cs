@@ -41,9 +41,9 @@ namespace TestProductService
         }
 
         [Test]
-        public async Task GetAvailableProductsAsync_ShouldReturnFilteredProducts()
+        public void GetAvailableProductsAsync_ShouldReturnFilteredProducts()
         {
-            var result = await _productService.GetAvailableProductsAsync();
+            var result = _productService.GetAvailableProducts();
 
             Assert.That(result, Is.Not.Null);
             Assert.That(result.Count, Is.EqualTo(2));
@@ -56,11 +56,10 @@ namespace TestProductService
         {
             var newProduct = new Product { Id = 4, Name = "Keyboard", Price = 45 };
 
-            await _productService.AddProductAsync(newProduct);
+            _productService.AddProduct(newProduct);
 
             var products = await _context.Products.ToListAsync();
             Assert.That(products.Count, Is.EqualTo(4));
-            //Assert.IsTrue(products.Any(p => p.Name == "Keyboard"));
             Assert.That(products.Any(p => p.Name == "Keyboard"));
         }
 
@@ -74,7 +73,7 @@ namespace TestProductService
             var factory = new TestDbContextFactory(options);
             var service = new ProductService.Core.ProductService(factory);
 
-            await service.AddProductAsync(new Product { Id = 1, Name = "Tablet", Price = 300 });
+            service.AddProduct(new Product { Id = 1, Name = "Tablet", Price = 300 });
 
             var context = factory.CreateDbContext();
             var products = await context.Products.ToListAsync();
@@ -84,7 +83,7 @@ namespace TestProductService
         }
 
         [Test]
-        public async Task Aspect_ShouldInjectDbContext()
+        public void Aspect_ShouldInjectDbContext()
         {
             var options = new DbContextOptionsBuilder<AppDbContext>()
                 .UseInMemoryDatabase("InjectTestDb_" + Guid.NewGuid())
@@ -93,13 +92,13 @@ namespace TestProductService
             var factory = new TestDbContextFactory(options);
             var service = new InjectableService(factory);
 
-            var result = await service.IsContextInjectedAsync();
+            var result = service.IsContextInjected();
 
             Assert.That(result, Is.True);
         }
 
         [Test]
-        public async Task Aspect_ShouldReturnDefaultOnException()
+        public void Aspect_ShouldReturnDefaultOnException()
         {
             var options = new DbContextOptionsBuilder<AppDbContext>()
                 .UseInMemoryDatabase("AspectErrorTestDb_" + Guid.NewGuid())
@@ -108,24 +107,10 @@ namespace TestProductService
             var factory = new TestDbContextFactory(options);
             var service = new FaultyProductService(factory);
 
-            var result = await service.GetAvailableProductsAsync();
+            var result = service.GetAvailableProducts();
 
             Assert.That(result, Is.Null);// El aspecto debería devolver default
         }
 
-        [Test]
-        public async Task Aspect_ShouldInjectDbContextProperty()
-        {
-            var options = new DbContextOptionsBuilder<AppDbContext>()
-                .UseInMemoryDatabase("AspectInjectTestDb_" + Guid.NewGuid())
-                .Options;
-
-            var factory = new TestDbContextFactory(options);
-            var service = new InjectableService(factory);
-
-            var result = await service.IsContextInjectedAsync();
-
-            Assert.That(result, Is.True); // El aspecto debe haber inyectado el contexto
-        }
     }
 }

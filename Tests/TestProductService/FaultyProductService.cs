@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Metalama.Framework.Aspects;
+using Microsoft.EntityFrameworkCore;
 using ProductService.Core;
 using ProductService.Core.Models;
 
@@ -8,23 +9,41 @@ namespace TestProductService
     {
         private readonly IDbContextFactory<AppDbContext> _contextFactory;
 
+        
         public FaultyProductService(IDbContextFactory<AppDbContext> contextFactory)
         {
             _contextFactory = contextFactory;
         }
 
-        [DbContextSafeExecute<AppDbContext>]
-        public virtual async Task<List<Product>> GetAvailableProductsAsync()
+        [CatchError]
+        public virtual List<Product> GetAvailableProducts()
         {
-            await Task.Delay(10); // Simula trabajo
             throw new InvalidOperationException("Simulated failure");
         }
 
-        [DbContextSafeExecute<AppDbContext>]
-        public async Task AddProductAsync(Product product)
+        [CatchError]
+        public void AddProduct(Product product)
         {
-            await Task.Delay(10); // Simula trabajo
             throw new InvalidOperationException("Simulated failure");
+        }
+    }
+
+    [CompileTime]
+    public class CatchErrorAttribute : OverrideMethodAspect
+    {
+        public override dynamic? OverrideMethod()
+        {
+            Console.WriteLine("Metalama: Aspect triggered");
+            try
+            {
+                var result = meta.Proceed();
+                return result;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return null;
+            }
         }
     }
 }

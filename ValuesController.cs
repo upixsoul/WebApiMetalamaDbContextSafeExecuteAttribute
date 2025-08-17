@@ -19,7 +19,7 @@ namespace WebApiMetalamaDbContextSafeExecuteAttribute
         public async Task<IEnumerable<string>> Get()
         {
             var values = new List<string>();
-            var result = await _productService.GetAvailableProductsAsync();
+            var result = _productService.GetAvailableProducts();
             foreach (var product in result)
             {
                 values.Add($"Id:{product.Id}, Name:{product.Name}, Price:{product.Price}");
@@ -32,7 +32,7 @@ namespace WebApiMetalamaDbContextSafeExecuteAttribute
         [HttpPost("{name}")]
         public async Task PostAsync(string name)
         {
-            await _productService.AddProductAsync(new Product()
+            _productService.AddProduct(new Product()
             {
                 Name = name,
                 Price = 123

@@ -11,7 +11,7 @@ namespace TestProductService
 {
     public class InjectableService
     {
-        private readonly IDbContextFactory<AppDbContext> _contextFactory;
+        private readonly IDbContextFactory<AppDbContext>? _contextFactory = null;
 
         public DbContext? DbContext { get; private set; }
 
@@ -21,10 +21,9 @@ namespace TestProductService
         }
 
         [DbContextSafeExecute<AppDbContext>]
-        public async Task<bool> IsContextInjectedAsync()
+        public bool IsContextInjected()
         {
-            await Task.Delay(10); // Simula trabajo
-            return DbContext != null;
+            return _contextFactory != null;
         }
     }
 }

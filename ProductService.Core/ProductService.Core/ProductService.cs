@@ -15,34 +15,34 @@ public class ProductService : IProductService
     }
 
     [DbContextSafeExecute<AppDbContext>]
-    public async Task<List<Product>> GetAvailableProductsAsync()
+    public List<Product> GetAvailableProducts()
     {
         var result = new List<Product>();
-        await using (var context = await _contextFactory.CreateDbContextAsync())
+        using (var context = _contextFactory.CreateDbContext())
         {
             Console.WriteLine("context assigned in GetAvailableProductsAsync");
-            result = await context.Products
+            result = context.Products
                 .Where(p => !string.IsNullOrEmpty(p.Name))
-                .ToListAsync();
+                .ToListAsync().Result;
             Console.WriteLine("result assigned in GetAvailableProductsAsync");
         }
         return result;
     }
 
     [DbContextSafeExecute<AppDbContext>]
-    public virtual async Task AddProductAsync(Product product)
+    public virtual void AddProduct(Product product)
     {
-        await using (var context = await _contextFactory.CreateDbContextAsync())
+        using (var context = _contextFactory.CreateDbContext())
         {
             Console.WriteLine("context assigned in AddProductAsync");
-            await context.Products.AddAsync(product);
-            await context.SaveChangesAsync();
+            context.Products.Add(product);
+            context.SaveChanges();
         }
     }
 }
 
 public interface IProductService
 {
-    public Task<List<Product>> GetAvailableProductsAsync();
-    public Task AddProductAsync(Product product);
+    public List<Product> GetAvailableProducts();
+    public void AddProduct(Product product);
 }

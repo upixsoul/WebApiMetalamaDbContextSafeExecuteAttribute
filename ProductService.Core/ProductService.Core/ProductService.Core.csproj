@@ -5,6 +5,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
 	<MetalamaEnabled>true</MetalamaEnabled>
+	<MetalamaDiagnostics>true</MetalamaDiagnostics>
   </PropertyGroup>
 
   <ItemGroup>
