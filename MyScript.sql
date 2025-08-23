@@ -1,6 +1,9 @@
 ﻿create database dagg
 go
 
+use dagg
+go
+     
 create table dbo.Product
 (
     Id       int identity,
